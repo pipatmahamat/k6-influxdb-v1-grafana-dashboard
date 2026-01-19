@@ -1,8 +1,8 @@
 {
   "__inputs": [
     {
-      "name": "DS_INFLUXDB",
-      "label": "InfluxDB",
+      "name": "DS_INFLUXDB-UAT7-TEST-K6",
+      "label": "influxdb-UAT7-test-k6",
       "description": "",
       "type": "datasource",
       "pluginId": "influxdb",
@@ -72,19 +72,6 @@
   "links": [],
   "panels": [
     {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 18,
-      "panels": [],
-      "title": "Dashboard Row",
-      "type": "row"
-    },
-    {
       "datasource": {
         "type": "influxdb",
         "uid": "${DS_INFLUXDB}"
@@ -146,10 +133,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 6,
+        "h": 10,
+        "w": 12,
         "x": 0,
-        "y": 1
+        "y": 0
       },
       "id": 21,
       "options": {
@@ -208,10 +195,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
-        "w": 6,
-        "x": 6,
-        "y": 1
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 0
       },
       "id": 23,
       "options": {
@@ -228,6 +215,9 @@
           "values": false
         },
         "showPercentChange": false,
+        "text": {
+          "valueSize": 100
+        },
         "textMode": "auto",
         "wideLayout": true
       },
@@ -262,7 +252,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
+                "color": "dark-red",
                 "value": 0
               }
             ]
@@ -271,10 +261,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 7,
+        "h": 5,
         "w": 6,
         "x": 12,
-        "y": 1
+        "y": 5
       },
       "id": 24,
       "options": {
@@ -291,6 +281,9 @@
           "values": false
         },
         "showPercentChange": false,
+        "text": {
+          "valueSize": 100
+        },
         "textMode": "auto",
         "wideLayout": true
       },
@@ -307,7 +300,7 @@
           "resultFormat": "time_series"
         }
       ],
-      "title": "HTTP Fail",
+      "title": "HTTP Request Errors",
       "type": "stat"
     },
     {
@@ -401,10 +394,10 @@
         ]
       },
       "gridPos": {
-        "h": 7,
+        "h": 5,
         "w": 6,
         "x": 18,
-        "y": 1
+        "y": 5
       },
       "id": 7,
       "interval": "1s",
@@ -426,6 +419,9 @@
           "values": false
         },
         "showPercentChange": false,
+        "text": {
+          "valueSize": 100
+        },
         "textMode": "auto",
         "wideLayout": true
       },
@@ -476,21 +472,8 @@
           "tags": []
         }
       ],
-      "title": "HTTP Errors Rate",
+      "title": "HTTP Errors Rate (%)",
       "type": "stat"
-    },
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 8
-      },
-      "id": 19,
-      "panels": [],
-      "title": "Response Time",
-      "type": "row"
     },
     {
       "datasource": {
@@ -532,7 +515,7 @@
         "h": 3,
         "w": 4,
         "x": 0,
-        "y": 9
+        "y": 10
       },
       "id": 16,
       "maxDataPoints": 100,
@@ -641,7 +624,7 @@
         "h": 3,
         "w": 4,
         "x": 4,
-        "y": 9
+        "y": 10
       },
       "id": 15,
       "maxDataPoints": 100,
@@ -750,7 +733,7 @@
         "h": 3,
         "w": 4,
         "x": 8,
-        "y": 9
+        "y": 10
       },
       "id": 11,
       "maxDataPoints": 100,
@@ -859,7 +842,7 @@
         "h": 3,
         "w": 4,
         "x": 12,
-        "y": 9
+        "y": 10
       },
       "id": 12,
       "maxDataPoints": 100,
@@ -935,6 +918,9 @@
       },
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
           "decimals": 2,
           "mappings": [
             {
@@ -953,10 +939,6 @@
               {
                 "color": "green",
                 "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
@@ -968,7 +950,7 @@
         "h": 3,
         "w": 4,
         "x": 16,
-        "y": 9
+        "y": 10
       },
       "id": 13,
       "maxDataPoints": 100,
@@ -1013,7 +995,7 @@
           ],
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT percentile(\"value\", 95) FROM http_req_duration WHERE $timeFilter ",
+          "query": "SELECT percentile(\"value\", 95) FROM http_req_duration WHERE $timeFilter",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1077,7 +1059,7 @@
         "h": 3,
         "w": 4,
         "x": 20,
-        "y": 9
+        "y": 10
       },
       "id": 14,
       "maxDataPoints": 100,
@@ -1161,11 +1143,11 @@
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
-            "axisPlacement": "right",
+            "axisPlacement": "auto",
             "barAlignment": 0,
             "barWidthFactor": 0.6,
             "drawStyle": "line",
-            "fillOpacity": 0,
+            "fillOpacity": 1,
             "gradientMode": "none",
             "hideFrom": {
               "legend": false,
@@ -1174,8 +1156,11 @@
             },
             "insertNulls": false,
             "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -1186,9 +1171,11 @@
               "mode": "none"
             },
             "thresholdsStyle": {
-              "mode": "dashed+area"
+              "mode": "line"
             }
           },
+          "decimals": 2,
+          "fieldMinMax": false,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1196,6 +1183,14 @@
               {
                 "color": "green",
                 "value": 0
+              },
+              {
+                "color": "#6ED0E0",
+                "value": 1000
+              },
+              {
+                "color": "#EAB839",
+                "value": 2000
               },
               {
                 "color": "red",
@@ -1210,15 +1205,19 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 12
+        "y": 13
       },
       "id": 22,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "mean"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
-          "showLegend": true
+          "showLegend": false,
+          "sortBy": "Mean",
+          "sortDesc": false
         },
         "tooltip": {
           "hideZeros": false,
@@ -1229,11 +1228,13 @@
       "pluginVersion": "12.1.1",
       "targets": [
         {
+          "alias": "P95",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
           },
-          "query": "SELECT percentile(\"value\", 95)\nFROM \"http_req_duration\"\nWHERE $timeFilter\nGROUP BY time($__interval)\n",
+          "hide": false,
+          "query": "SELECT percentile(\"value\", 95) FROM \"http_req_duration\" WHERE $timeFilter GROUP BY time($__interval)\n",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series"
@@ -1307,7 +1308,7 @@
         "h": 8,
         "w": 12,
         "x": 12,
-        "y": 12
+        "y": 13
       },
       "id": 17,
       "interval": "1s",
@@ -1440,7 +1441,7 @@
         "h": 8,
         "w": 12,
         "x": 0,
-        "y": 20
+        "y": 21
       },
       "id": 25,
       "options": {
@@ -1461,6 +1462,7 @@
       "pluginVersion": "12.1.1",
       "targets": [
         {
+          "alias": "",
           "query": "SELECT count(\"value\")\nFROM \"checks\"\nWHERE $timeFilter AND \"value\" = 0\nGROUP BY time($__interval)\nfill(null)\n",
           "rawQuery": true,
           "refId": "A",
@@ -1501,9 +1503,9 @@
       },
       "gridPos": {
         "h": 8,
-        "w": 12,
+        "w": 6,
         "x": 12,
-        "y": 20
+        "y": 21
       },
       "id": 27,
       "options": {
@@ -1524,6 +1526,7 @@
       "pluginVersion": "12.1.1",
       "targets": [
         {
+          "alias": "",
           "datasource": {
             "type": "influxdb",
             "uid": "${DS_INFLUXDB}"
@@ -1532,11 +1535,66 @@
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series"
+        }
+      ],
+      "title": "Business Assertion Pass Rate (%)",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "dark-red",
+                "value": 0
+              }
+            ]
+          },
+          "unit": "percent"
         },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 21
+      },
+      "id": 28,
+      "options": {
+        "minVizHeight": 75,
+        "minVizWidth": 75,
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "sizing": "auto"
+      },
+      "pluginVersion": "12.1.1",
+      "targets": [
         {
+          "alias": "% Fail Transaction",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+            "uid": "${DS_INFLUXDB}"
           },
           "hide": false,
           "query": "SELECT (1 - mean(\"value\")) * 100\nFROM \"checks\"\nWHERE $timeFilter",
@@ -1545,13 +1603,13 @@
           "resultFormat": "time_series"
         }
       ],
-      "title": "Assertion Pass/Fail Rate",
+      "title": "Business Assertion Fail Rate (%)",
       "type": "gauge"
     },
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDB}"
+        "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1559,12 +1617,10 @@
             "mode": "thresholds"
           },
           "custom": {
-            "align": "center",
+            "align": "auto",
             "cellOptions": {
-              "type": "auto",
-              "wrapText": false
+              "type": "auto"
             },
-            "filterable": true,
             "inspect": false
           },
           "mappings": [],
@@ -1585,50 +1641,47 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 10,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 29
       },
       "id": 26,
       "options": {
-        "cellHeight": "md",
+        "cellHeight": "sm",
         "footer": {
           "countRows": false,
-          "enablePagination": false,
-          "fields": [],
+          "fields": "",
           "reducer": [
             "sum"
           ],
-          "show": true
+          "show": false
         },
-        "showHeader": true
+        "frameIndex": 1,
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "sum"
+          }
+        ]
       },
       "pluginVersion": "12.1.1",
+      "repeatDirection": "h",
       "targets": [
         {
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
-          },
+          "alias": "",
           "query": "SELECT sum(\"value\")\nFROM \"error_code\"\nWHERE $timeFilter\nGROUP BY \"code\"\n",
           "rawQuery": true,
           "refId": "A",
-          "resultFormat": "time_series"
-        },
-        {
+          "resultFormat": "table",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB}"
-          },
-          "hide": false,
-          "query": "SELECT mean(\"value\") FROM \"measurement\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
-          "rawQuery": true,
-          "refId": "B"
+            "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+          }
         }
       ],
       "title": "Error Code Breakdown",
-      "transparent": true,
       "type": "table"
     }
   ],
