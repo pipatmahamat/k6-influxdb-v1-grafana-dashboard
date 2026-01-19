@@ -1655,7 +1655,5 @@
   },
   "timepicker": {},
   "timezone": "browser",
-  "title": "k6 Load Test Dashboard (InfluxDB v1.x)",
-  "uid": "b1e31a52-98aa-4572-9e44-9482d879dcc9",
-  "version": 58
+  "title": "k6 Load Test Dashboard (InfluxDB v1.x)"
 }
