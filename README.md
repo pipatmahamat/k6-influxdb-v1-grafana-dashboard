@@ -77,6 +77,15 @@ This ensures compatibility with most k6 executors.
 
 ---
 
+## Compatibility
+- ✅ InfluxDB 1.7.x – 1.8.x
+- ❌ InfluxDB 2.x (Flux not supported)
+
+## Tested With
+- k6
+- InfluxDB 1.7.4
+- Grafana 8+
+
 ## 📝 License
 
 MIT
