@@ -1,8 +1,8 @@
 {
   "__inputs": [
     {
-      "name": "DS_INFLUXDB-UAT7-TEST-K6",
-      "label": "influxdb-UAT7-test-k6",
+      "name": "DS_INFLUXDB",
+      "label": "influxdb",
       "description": "",
       "type": "datasource",
       "pluginId": "influxdb",
@@ -128,7 +128,7 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "none"
         },
         "overrides": []
       },
@@ -159,7 +159,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+            "uid": "${DS_INFLUXDB}"
           },
           "query": "SELECT mean(\"value\") FROM \"vus_max\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
           "rawQuery": true,
@@ -226,7 +226,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+            "uid": "${DS_INFLUXDB}"
           },
           "query": "SELECT sum(\"value\")\nFROM \"http_reqs\"\nWHERE $timeFilter\n",
           "rawQuery": true,
@@ -292,7 +292,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+            "uid": "${DS_INFLUXDB}"
           },
           "query": "SELECT sum(\"value\")\nFROM \"http_req_failed\"\nWHERE $timeFilter\n",
           "rawQuery": true,
@@ -431,7 +431,7 @@
           "alias": "Num Errors",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -541,7 +541,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -650,7 +650,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -759,7 +759,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -868,7 +868,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -974,9 +974,10 @@
       "pluginVersion": "12.1.1",
       "targets": [
         {
+          "alias": "",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -1085,7 +1086,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -1197,7 +1198,8 @@
                 "value": 3000
               }
             ]
-          }
+          },
+          "unit": "ms"
         },
         "overrides": []
       },
@@ -1231,10 +1233,10 @@
           "alias": "P95",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+            "uid": "${DS_INFLUXDB}"
           },
           "hide": false,
-          "query": "SELECT percentile(\"value\", 95) FROM \"http_req_duration\" WHERE $timeFilter GROUP BY time($__interval)\n",
+          "query": "SELECT percentile(\"value\", 95) FROM \"http_req_duration\" WHERE $timeFilter GROUP BY time(5s)\n",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series"
@@ -1286,6 +1288,7 @@
               "mode": "off"
             }
           },
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1293,14 +1296,10 @@
               {
                 "color": "green",
                 "value": 0
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
-          "unit": "short"
+          "unit": "reqps"
         },
         "overrides": []
       },
@@ -1315,8 +1314,7 @@
       "options": {
         "legend": {
           "calcs": [
-            "mean",
-            "max"
+            "median"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -1331,10 +1329,10 @@
       "pluginVersion": "12.1.1",
       "targets": [
         {
-          "alias": "Requests per Second",
+          "alias": "http_reqs",
           "datasource": {
             "type": "influxdb",
-            "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+            "uid": "${DS_INFLUXDB}"
           },
           "dsType": "influxdb",
           "groupBy": [
@@ -1354,7 +1352,7 @@
           "measurement": "http_reqs",
           "orderByTime": "ASC",
           "policy": "default",
-          "query": "SELECT sum(\"value\") FROM \"http_reqs\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "query": "SELECT sum(\"value\") FROM \"http_reqs\" WHERE $timeFilter GROUP BY time(1s) fill(null)",
           "rawQuery": true,
           "refId": "A",
           "resultFormat": "time_series",
@@ -1433,7 +1431,7 @@
               }
             ]
           },
-          "unit": "short"
+          "unit": "string"
         },
         "overrides": []
       },
@@ -1463,13 +1461,14 @@
       "targets": [
         {
           "alias": "",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
           "query": "SELECT count(\"value\")\nFROM \"checks\"\nWHERE $timeFilter AND \"value\" = 0\nGROUP BY time($__interval)\nfill(null)\n",
           "rawQuery": true,
           "refId": "A",
-          "resultFormat": "time_series",
-          "datasource": {
-            "uid": "${DS_INFLUXDB}"
-          }
+          "resultFormat": "time_series"
         }
       ],
       "title": "Assertion Fail (Checks Failed)",
@@ -1478,7 +1477,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+        "uid": "${DS_INFLUXDB}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1543,7 +1542,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+        "uid": "${DS_INFLUXDB}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1609,7 +1608,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
+        "uid": "${DS_INFLUXDB}"
       },
       "fieldConfig": {
         "defaults": {
@@ -1667,18 +1666,17 @@
         ]
       },
       "pluginVersion": "12.1.1",
-      "repeatDirection": "h",
       "targets": [
         {
           "alias": "",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "${DS_INFLUXDB}"
+          },
           "query": "SELECT sum(\"value\")\nFROM \"error_code\"\nWHERE $timeFilter\nGROUP BY \"code\"\n",
           "rawQuery": true,
           "refId": "A",
-          "resultFormat": "table",
-          "datasource": {
-            "type": "influxdb",
-            "uid": "${DS_INFLUXDB-UAT7-TEST-K6}"
-          }
+          "resultFormat": "table"
         }
       ],
       "title": "Error Code Breakdown",
@@ -1766,8 +1764,8 @@
     ]
   },
   "time": {
-    "from": "now-5m",
-    "to": "now"
+    "from": "2026-01-21T06:42:18.380Z",
+    "to": "2026-01-21T07:12:11.168Z"
   },
   "timepicker": {},
   "timezone": "browser",
